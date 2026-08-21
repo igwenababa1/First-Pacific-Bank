@@ -1,0 +1,133 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile data",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "profilePictureUrl": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin", "super_admin"] },
+        "kycStatus": { "type": "string", "enum": ["unverified", "pending", "verified", "rejected"] },
+        "kycData": {
+          "type": "object",
+          "properties": {
+            "documentType": { "type": "string" },
+            "documentNumber": { "type": "string" },
+            "country": { "type": "string" },
+            "submittedAt": { "type": "string", "format": "date-time" }
+          }
+        }
+      },
+      "required": ["name", "email"]
+    },
+    "Account": {
+      "title": "Account",
+      "description": "Premium customer ledger account details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "nickname": { "type": "string" },
+        "accountNumber": { "type": "string" },
+        "fullAccountNumber": { "type": "string" },
+        "routingNumber": { "type": "string" },
+        "balance": { "type": "number" },
+        "currency": { "type": "string" },
+        "features": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "type", "balance", "currency"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Financial transaction",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "accountId": { "type": "string" },
+        "sendAmount": { "type": "number" },
+        "receiveAmount": { "type": "number" },
+        "receiveCurrency": { "type": "string" },
+        "fee": { "type": "number" },
+        "exchangeRate": { "type": "number" },
+        "status": { "type": "string" },
+        "type": { "type": "string", "enum": ["credit", "debit"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "accountId", "sendAmount", "status", "type", "createdAt"]
+    },
+    "Recipient": {
+      "title": "Recipient",
+      "description": "Saved payees and recipients information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "fullName": { "type": "string" },
+        "nickname": { "type": "string" },
+        "bankName": { "type": "string" },
+        "accountNumber": { "type": "string" },
+        "email": { "type": "string", "format": "email" }
+      },
+      "required": ["id", "fullName", "bankName", "accountNumber"]
+    },
+    "LoanApplication": {
+      "title": "LoanApplication",
+      "description": "Loan credit requests details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "amount": { "type": "number" },
+        "term": { "type": "number" },
+        "status": { "type": "string" },
+        "submittedDate": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "amount", "term", "status", "submittedDate"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Regulatory activity and user action audit log",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userEmail": { "type": "string", "format": "email" },
+        "adminId": { "type": "string" },
+        "action": { "type": "string" },
+        "details": { "type": "object" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["action", "timestamp"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User profiles"
+    },
+    "accounts/{userId}": {
+      "schema": { "$ref": "#/entities/Account" },
+      "description": "User ledger accounts"
+    },
+    "transactions/{transactionId}": {
+      "schema": { "$ref": "#/entities/Transaction" },
+      "description": "User transactions"
+    },
+    "recipients/{recipientId}": {
+      "schema": { "$ref": "#/entities/Recipient" },
+      "description": "Beneficiary payees"
+    },
+    "loan_applications/{applicationId}": {
+      "schema": { "$ref": "#/entities/LoanApplication" },
+      "description": "Loan and credit applications"
+    },
+    "audit_logs/{logId}": {
+      "schema": { "$ref": "#/entities/AuditLog" },
+      "description": "Regulatory activity and audit logs"
+    }
+  }
+}

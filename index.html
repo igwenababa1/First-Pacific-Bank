@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="First Pacific" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <title>First Pacific Bank - Global Private Banking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: { // Mature US Banking Navy/Slate
+                DEFAULT: 'var(--primary-500, #546d8e)',
+                50: 'var(--primary-50, #f4f6f8)',
+                100: 'var(--primary-100, #e3e8ee)',
+                200: 'var(--primary-200, #c8d2df)',
+                300: 'var(--primary-300, #a1b2c7)',
+                400: 'var(--primary-400, #758caa)',
+                500: 'var(--primary-500, #546d8e)',
+                600: 'var(--primary-600, #425674)',
+                700: 'var(--primary-700, #36465f)',
+                800: 'var(--primary-800, #303b4f)',
+                900: 'var(--primary-900, #2a3344)',
+                950: 'var(--primary-950, #1b212f)',
+              }
+            },
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+              mono: ['Space Mono', 'monospace'],
+            },
+            boxShadow: {
+              'digital': '0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3)',
+              'digital-inset': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.6)',
+              'digital-light': '0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04)',
+              'digital-light-inset': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.04)',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --bg-color: #f8fafc; /* Crisp bank-grade light surface */
+        --surface-primary: #ffffff;
+        --surface-secondary: #f1f5f9;
+        --surface-elevated: #ffffff;
+        --border-subtle: #e2e8f0;
+        --border-medium: #cbd5e1;
+        --border-strong: #94a3b8;
+        --text-color: #020617; /* Slate 950 */
+        --text-primary: #020617;
+        --text-secondary: #0f172a; /* Slate 900 */
+        --text-muted: #334155; /* Slate 700 */
+        --text-dim: #475569; /* Slate 600 */
+        
+        --neumorphic-shadow-light: 8px 8px 16px #e2e6eb;
+        --neumorphic-shadow-dark: -8px -8px 16px #ffffff;
+        --neumorphic-shadow-inset-light: inset 8px 8px 16px #e2e6eb;
+        --neumorphic-shadow-inset-dark: inset -8px -8px 16px #ffffff;
+        
+        --primary-50: #f4f6f8;
+        --primary-100: #e3e8ee;
+        --primary-200: #c8d2df;
+        --primary-300: #a1b2c7;
+        --primary-400: #758caa;
+        --primary-500: #546d8e;
+        --primary-600: #425674;
+        --primary-700: #36465f;
+        --primary-800: #303b4f;
+        --primary-900: #2a3344;
+        --primary-950: #1b212f;
+      }
+      
+      .dark {
+        --bg-color: #05080f; /* Ultra-deep institutional obsidian */
+        --surface-primary: #0a0f1d;
+        --surface-secondary: #101625;
+        --surface-elevated: #161e30;
+        --border-subtle: rgba(255, 255, 255, 0.1);
+        --border-medium: rgba(255, 255, 255, 0.2);
+        --border-strong: rgba(255, 255, 255, 0.35);
+        --text-color: #ffffff; /* Pure white */
+        --text-primary: #ffffff;
+        --text-secondary: #f1f5f9; /* Slate 100 */
+        --text-muted: #cbd5e1; /* Slate 300 */
+        --text-dim: #94a3b8; /* Slate 400 */
+
+        --neumorphic-shadow-light: 6px 6px 12px #020408;
+        --neumorphic-shadow-dark: -6px -6px 12px #080c16;
+        --neumorphic-shadow-inset-light: inset 6px 6px 12px #020408;
+        --neumorphic-shadow-inset-dark: inset -6px -6px 12px #080c16;
+      }
+      
+      /* Universal smooth transition for theme mode changes */
+      *, ::before, ::after {
+        -webkit-tap-highlight-color: transparent;
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+      }
+
+      /* Premium Mobile Banking Touch-Feedback & Tap Highlight Overrides */
+      button, 
+      a, 
+      [role="button"],
+      input[type="button"],
+      input[type="submit"],
+      .touch-feedback {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+      }
+
+      /* Native tactile depression feel on press */
+      button:active:not(:disabled),
+      a:active,
+      [role="button"]:active:not([aria-disabled="true"]),
+      .touch-feedback:active {
+        transform: scale(0.975);
+        filter: brightness(0.94);
+        transition: transform 0.06s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.06s ease;
+      }
+
+      .touch-press:active {
+        transform: scale(0.94);
+        opacity: 0.85;
+        transition: transform 0.06s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.06s ease;
+      }
+      
+      html {
+        transition: background-color 0.5s ease, color 0.5s ease;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        min-height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+        transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+      }
+
+      .font-serif { font-family: 'Playfair Display', serif; }
+      .font-mono { font-family: 'Space Mono', monospace; }
+
+      .brand-text-premium {
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+      .animate-fade-in-up { animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+      @keyframes balanceFadeUp {
+        0% {
+          opacity: 0.2;
+          transform: translateY(10px) scale(0.97);
+        }
+        60% {
+          opacity: 0.95;
+          transform: translateY(-2px) scale(1.01);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .animate-balance-fade-up {
+        animation: balanceFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+
+      @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+      }
+      .animate-marquee { animation: marquee 40s linear infinite; }
+
+      .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 3px; }
+      
+      .mask-image-gradient {
+        mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+      }
+
+      .mask-linear-fade {
+        mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      }
+
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+      .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
+
+      /* Full viewport & tablet fullscreen support */
+      html, body, #root {
+        width: 100%;
+        min-height: 100%;
+        min-height: 100dvh;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* CSS Container Query & Entrance Animation for Header Navigation */
+      @keyframes headerEntranceSlideDown {
+        0% {
+          transform: translateY(-16px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .header-cq-root {
+        container-type: inline-size;
+        container-name: header-portal;
+        animation: headerEntranceSlideDown 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      .header-cq-item {
+        transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                    max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                    padding 0.25s ease,
+                    margin 0.25s ease;
+      }
+
+      @container header-portal (max-width: 520px) {
+        .header-cq-hide-compact {
+          opacity: 0 !important;
+          max-width: 0 !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          pointer-events: none !important;
+          transform: scale(0.92) !important;
+          display: none !important;
+        }
+        .header-cq-condensed-gap {
+          gap: 0.25rem !important;
+        }
+      }
+
+      @container header-portal (min-width: 521px) {
+        .header-cq-hide-compact {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @container header-portal (max-width: 768px) {
+        .header-cq-hide-tablet {
+          opacity: 0 !important;
+          max-width: 0 !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          pointer-events: none !important;
+          transform: scale(0.92) !important;
+          display: none !important;
+        }
+      }
+
+      @container header-portal (min-width: 769px) {
+        .header-cq-hide-tablet {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @container header-portal (min-width: 769px) and (max-width: 1024px) {
+        .header-cq-search-tablet {
+          max-width: 17rem !important;
+          transition: max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+      }
+      
+      /* Ultra Modern Light Mode (CSS Engine) */
+      /* Migrated to Tailwind dark mode */
+      html.dark {
+          color-scheme: dark;
+      }
+      html:not(.dark) {
+          color-scheme: light;
+      }
+
+      /* Premium Card & Account Glow Transitions */
+      .premium-hover-glow {
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                    border-color 0.3s ease;
+      }
+      .premium-hover-glow:hover {
+        transform: scale(1.02);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4),
+                    0 0 28px 2px rgba(16, 185, 129, 0.2);
+      }
+      
+      /* Hide Google Translate completely from UI */
+      body > .skiptranslate,
+      .goog-te-banner-frame.skiptranslate {
+          display: none !important;
+      }
+      body { top: 0px !important; }
+
+      /* React Quill Custom Overrides */
+      .ql-container {
+        font-family: inherit !important;
+        font-size: inherit !important;
+        border-bottom-left-radius: 0.75rem;
+        border-bottom-right-radius: 0.75rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .ql-editor {
+        flex: 1;
+        min-height: 200px;
+        overflow-y: auto;
+      }
+      .ql-toolbar {
+        border-top-left-radius: 0.75rem;
+        border-top-right-radius: 0.75rem;
+        background-color: rgba(248, 250, 252, 0.8);
+      }
+      html.dark .ql-toolbar {
+        background-color: rgba(15, 23, 42, 0.8);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+      html.dark .ql-container {
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+      html.dark .ql-snow .ql-stroke {
+        stroke: #cbd5e1;
+      }
+      html.dark .ql-snow .ql-fill, html.dark .ql-snow .ql-stroke.ql-fill {
+        fill: #cbd5e1;
+      }
+      html.dark .ql-snow .ql-picker {
+        color: #cbd5e1;
+      }
+    </style>
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+  <body>
+    <div id="google_translate_element" style="position: absolute; top: -9999px; left: -9999px; z-index: -9999; opacity: 0; pointer-events: none;"></div>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>

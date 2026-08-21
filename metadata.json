@@ -1,0 +1,10 @@
+{
+  "name": "First Pacific Bank",
+  "description": "Enterprise sovereign banking portal for First Pacific Bank with real-time ledger sync, multi-currency settlements, institutional admin control, and security surveillance.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation",
+    "microphone"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

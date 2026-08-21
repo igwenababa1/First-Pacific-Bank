@@ -1,0 +1,8 @@
+{
+  "versionCode": 3,
+  "versionName": "1.2",
+  "downloadUrl": "https://ais-pre-jxjaqzbtle6ty3ekrmhqox-57129186097.europe-west2.run.app/download/First-Paba-Secure-v1.2.apk",
+  "releaseNotes": "Mandatory security enclave upgrade, optimized local biometric caching, and universal deep link routing for international transfers.",
+  "isMandatory": true,
+  "publishedAt": "2026-06-23T16:00:00Z"
+}

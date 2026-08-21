@@ -1,0 +1,6 @@
+{
+  "appId": "com.firstpaba.app",
+  "appName": "First Pacific Bank",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
